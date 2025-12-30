@@ -1,64 +1,72 @@
-Universal Power Supply Circuit
+# ⚡ Universal Dual-Input Power Supply (5V / 3.3V)
 
-This project is an electronic power supply circuit that can be powered by either 12V (AC or DC) or 220V AC, and outputs regulated 5V or 3.3V DC. It includes input protection, voltage regulation, and indicators for status and output selection.
+![Project Type](https://img.shields.io/badge/Project-Power_Supply-red)
+![Output](https://img.shields.io/badge/Output-5V_/_3.3V-blue)
+![Input](https://img.shields.io/badge/Input-220V_AC_/_12V_AC_DC-orange)
 
-🧩 Features
-Dual Input Power:
-220V AC (via HLK-PM12 module)
-12V input (can be AC or DC)
-Selectable Output:
-5V or 3.3V regulated DC output
-Power Mode Switch:
-Toggle between AC or DC mode using a manual switch
-Safety Features:
-Diodes for reverse polarity protection (especially for 12V DC input)
-Bridge rectifier to convert 12V AC to DC
-Status Indicator:
-LED to indicate that the circuit is powered ON
+## 📌 Overview
+This project is a versatile **Universal Power Supply Circuit** designed to provide a stable DC output from various input sources. It can be powered by either high-voltage **220V AC** or low-voltage **12V (AC or DC)**, making it an ideal "all-in-one" power solution for electronics labs and embedded systems.
 
+---
 
-🔌 Circuit Components
-HLK-PM12 : AC-DC module to convert 220V AC to 12V DC
-Bridge Rectifier: Converts 12V AC input to DC
-7805 Regulator: Outputs regulated 5V
-7833 Regulator: Outputs regulated 3.3V
-2x Electrolytic Capacitors: For filtering and stabilizing DC output
-2x Protection Diodes: Prevents damage if user reverses DC input polarity
-Power Mode Switch: Selects between AC and DC input modes
-Output Selector Socket: Allows user to choose between 5V and 3.3V output
-3x Sockets: 1 for 220V AC input, 1 for 12V input (AC/DC), 1 for output
-Power Indicator LED: Lights up when power is supplied to the circuit
+## 🧩 Key Features
 
+* **Dual Input Support:** Accepts 220V AC (Mains) or 12V (AC/DC).
+* **Selectable Output:** Regulated 5V or 3.3V DC via an output selector socket.
+* **Dual-Mode Switching:** Manual toggle switch to select between AC and DC input paths.
+* **Robust Protection:** Includes reverse polarity protection and bridge rectification.
+* **Status Indicator:** On-board LED for power-on confirmation.
 
-⚙️ Working Principle
-1-Input:
-  If using 220V AC, the circuit powers through HLK-PM12, which outputs 12V DC.
-  If using 12V, it can be AC or DC:
-  AC: Passed through a bridge rectifier.
-  DC: Goes directly to the regulators, with diode protection in case of reversed polarity.
-2-Stabilization:
-  Capacitors filter and stabilize the voltage before reaching the regulators.
-  Output Regulation:
-  You can select between 5V (via 7805) or 3.3V (via 7833) using a selector socket.
-3-LED Indicator:
-  A simple LED indicates that the circuit is powered and active.
+---
 
-  
-🛠️ Use Cases
-Powering microcontrollers (like Arduino or ESP8266)
-Embedded systems
-Low voltage control circuits
-DIY electronics projects needing stable 5V or 3.3V
+## 🔌 Circuit Components
+
+| Category | Component | Description |
+| :--- | :--- | :--- |
+| **AC-DC Converter** | **HLK-PM12** | High-efficiency module to convert 220V AC to 12V DC. |
+| **Rectification** | **Bridge Rectifier** | Converts 12V AC input into usable DC. |
+| **Regulation (5V)** | **7805 IC** | Linear regulator for stable 5V output. |
+| **Regulation (3.3V)** | **LM1117 / 7833** | Linear regulator for stable 3.3V output. |
+| **Filtration** | **Electrolytic Caps** | Large capacitors for smoothing and ripple reduction. |
+| **Protection** | **Diodes** | Prevents damage from reverse polarity on the 12V DC input. |
+| **Selection** | **Jumper/Socket** | Allows user to toggle between 3.3V and 5V outputs. |
 
 
-📦 Files in This Repo
-README.md — You’re reading it now
-circuit_diagram — 
 
-🧠 Notes
-Always double-check your power source before switching modes.
-Make sure proper heat sinking is used for the regulators if high current is expected.
-DO NOT touch the board while connected to 220V AC for safety.
+---
 
-.
+## ⚙️ How It Works
 
+### 1. Input Stage
+* **220V AC Mode:** The signal passes through the **HLK-PM12** isolation module, safely stepping it down to 12V DC.
+* **12V Mode:**
+    * **If AC:** It passes through the **Bridge Rectifier**.
+    * **If DC:** It flows through protection diodes to prevent circuit failure if the leads are swapped.
+
+### 2. Stabilization & Regulation
+The raw 12V DC is filtered by electrolytic capacitors to remove noise. It then feeds into the **7805** and **7833** regulators.
+
+### 3. Output Selection
+The user can choose the desired logic level (5V for Arduino/Atmega or 3.3V for ESP8266/STM32) using the output selector socket.
+
+---
+
+## 🛠 Use Cases
+* **Microcontrollers:** Powering Arduino, ESP8266, ESP32, or STM32 boards.
+* **Breadboard Power:** A reliable source for prototyping various circuits.
+* **DIY Projects:** Any application requiring a clean 5V or 3.3V rail from available wall adapters or mains.
+
+---
+
+## ⚠️ Safety Warnings
+
+> [!WARNING]
+> **HIGH VOLTAGE:** DO NOT touch any part of the board while it is connected to 220V AC. Ensure the AC section is properly insulated or housed in an enclosure.
+
+* **Mode Switching:** Always verify your input source voltage before toggling the power mode switch.
+* **Heat Dissipation:** If drawing high current, the linear regulators (7805/7833) will generate heat. Use a **heatsink** if necessary.
+
+---
+
+## 📝 Design Notes
+The inclusion of the **HLK-PM12** provides a compact and isolated way to handle mains power, significantly reducing the footprint compared to traditional transformers.
